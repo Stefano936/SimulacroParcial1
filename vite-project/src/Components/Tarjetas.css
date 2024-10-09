@@ -28,3 +28,7 @@
     border-color: black;
     border-radius: 10px;
 }
+
+#OrdenarTarjetas{
+    display: flex;
+}
