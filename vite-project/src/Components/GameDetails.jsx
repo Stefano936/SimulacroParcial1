@@ -18,8 +18,9 @@ function GameDetails() {
 
     return (
         <div>
-            <h1>{game.title}</h1>
-            <p>{game.description}</p>
+            <button onClick={() => window.history.back()}>Back</button>
+            <h2>Title:{game.title}</h2>
+            <p>Description:{game.description}</p>
             <p>Players: {game.players}</p>
             <p>Category: {game.category}</p>
         </div>

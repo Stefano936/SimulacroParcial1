@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./Tarjetas.css";
 
 function Tarjetas({ id, Nombre, onUpdate = {} }) {
-    const [showForm, setShowForm] = useState(false);
     const [nombre, setNombre] = useState(Nombre);
     const [descripcion, setDescripcion] = useState('');
     const [cantidadJugadores, setCantidadJugadores] = useState('');
     const [categoria, setCategoria] = useState('');
+    const [showForm, setShowForm] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/api/games/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                setNombre(data.title || Nombre); 
+                setDescripcion(data.description || '');
+                setCantidadJugadores(data.players || '');
+                setCategoria(data.categories || ''); 
+            })
+            .catch(error => console.error('Error fetching game details:', error));
+    }, [id, Nombre]);
 
     function handleBorrar() {
         fetch(`http://localhost:3000/api/games/${id}`, {
@@ -33,7 +45,7 @@ function Tarjetas({ id, Nombre, onUpdate = {} }) {
                 title: nombre,
                 description: descripcion,
                 players: cantidadJugadores,
-                category: categoria
+                categories: categoria 
             })
         })
         .then(response => response.json())
@@ -46,7 +58,7 @@ function Tarjetas({ id, Nombre, onUpdate = {} }) {
 
     return (
         <div id="Tarjeta">
-            <h1 id="Nombre">{Nombre}</h1>
+            <h1 id="Nombre">{nombre}</h1>
             <button id="Detalles" onClick={handleDetalles}>Detalles</button>
             <button id="Borrar" onClick={handleBorrar}>Borrar</button>
 
