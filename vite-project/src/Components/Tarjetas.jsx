@@ -6,6 +6,9 @@ function Tarjetas({ id, Nombre, onUpdate = {} }) {
         // request a el borrar endpoint.
         //  para q se borre en tiempo real en la pagina, tenes q actualizar el array
         // onUpdate(id);
+        fetch(`http://localhost:3000/api/games/${id}`, {
+            method: 'DELETE',
+        })
         onUpdate(id)
     }
 
