@@ -23,8 +23,8 @@ function Home(){
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                title: 'Nuevo Juego',
-                description: 'Descripcion del nuevo juego',
+                title: 'CryptoGame',
+                description: 'Es un juego de invertir en criptomonedas',
                 image: 'https://via.placeholder.com/300',
                 rating: 5
             })
