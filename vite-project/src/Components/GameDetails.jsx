@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function GameDetails() {
-    const { id } = useParams();
+    const {id} = useParams();
     const [game, setGame] = useState(null);
 
     useEffect(() => {
@@ -19,10 +19,10 @@ function GameDetails() {
     return (
         <div>
             <button onClick={() => window.history.back()}>Back</button>
-            <h2>Title:{game.title}</h2>
-            <p>Description:{game.description}</p>
-            <p>Players: {game.players}</p>
-            <p>Category: {game.category}</p>
+            <h2>Title:{game[0].title}</h2>
+            <p>Description:{game[0].description}</p>
+            <p>Players: {game[0].players}</p>
+            <p>Categories: {game[0].categories}</p>
         </div>
     );
 }

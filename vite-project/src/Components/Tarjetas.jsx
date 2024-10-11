@@ -12,15 +12,17 @@ function Tarjetas({ id, Nombre, onUpdate = {} }) {
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/games/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                setNombre(data.title || Nombre); 
-                setDescripcion(data.description || '');
-                setCantidadJugadores(data.players || '');
-                setCategoria(data.categories || ''); 
-            })
-            .catch(error => console.error('Error fetching game details:', error));
-    }, [id, Nombre]);
+          .then(response => response.json())
+          .then(data => {
+            setNombre(data.title || Nombre);
+            setDescripcion(data.description || '');
+            setCantidadJugadores(data.players || '');
+            setCategoria(data.categories || '');
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      }, [id]);
 
     function handleBorrar() {
         fetch(`http://localhost:3000/api/games/${id}`, {
