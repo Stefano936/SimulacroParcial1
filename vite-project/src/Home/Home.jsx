@@ -5,6 +5,7 @@ import Tarjetas from '../components/Tarjetas';
 function Home(){
     const [juegos, setJuegos] = useState([]); 
     const [showForm, setShowForm] = useState(false);
+    const [searchLetter, setSearchLetter] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:3000/api/games')
@@ -45,11 +46,19 @@ function Home(){
         .catch(error => console.error('Error adding game:', error));
     }
 
+    const filteredJuegos = juegos.filter(juego => juego.title.toLowerCase().startsWith(searchLetter.toLowerCase()));
+
     return (
         <>
             <div>
                 <h1 id="Titulo">Paris Juegos</h1>
                 <button id="AgregarJuego" onClick={() => setShowForm(true)}>Agregar Juego</button>
+                <input className= "search"
+                    type="text" 
+                    placeholder="Buscar por letra" 
+                    value={searchLetter} 
+                    onChange={(e) => setSearchLetter(e.target.value)} 
+                />
             </div>
             {showForm && (
                 <form onSubmit={handleAgregarJuego}>
@@ -73,7 +82,7 @@ function Home(){
                 </form>
             )}
             <div id="OrdenarTarjetas">
-                {juegos.map(juego => (
+                {filteredJuegos.map(juego => (
                     <Tarjetas key={juego.id} id={juego.id} Nombre={juego.title} onUpdate={handleUpdateTarjeta} />
                 ))}
             </div>

@@ -10,6 +10,7 @@
     font-size: large;
     border-color: black;
     border-radius: 10px;
+    
 }
 
 div{
@@ -18,4 +19,11 @@ div{
     margin: 0 auto;
 }
 
-
+.search{
+    color: black;
+    font-weight: bolder;
+    font-size: large;
+    border-color: black;
+    border-radius: 10px;
+    text-align:center;
+}
