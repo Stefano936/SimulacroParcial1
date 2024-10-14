@@ -39,7 +39,7 @@ function Home(){
         })
         .then(response => response.json())
         .then(data => {
-            setJuegos([...juegos, data]);
+            setJuegos([...juegos, {id: data[data.length - 1].id, title: e.target.title.value, description: e.target.description.value, players: e.target.players.value, categories: e.target.categories.value}]);
             setShowForm(false);
         })
         .catch(error => console.error('Error adding game:', error));
